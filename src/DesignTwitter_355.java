@@ -72,7 +72,9 @@ class Twitter {
 
         List<Integer> newsFeed = new ArrayList<Integer>();
         for (int[] tweetIdWithDate : combinedList) {
-            newsFeed.add(tweetIdWithDate[0]);
+            if (!newsFeed.contains(tweetIdWithDate[0])) {
+                newsFeed.add(tweetIdWithDate[0]);
+            }
         }
         return newsFeed;
     }
