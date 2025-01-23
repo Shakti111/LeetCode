@@ -9,16 +9,34 @@ public class ValidAnagram_242 {
         System.out.println(result);
     }
     public boolean isAnagram(String s, String t) {
-        char[] sChar = s.toCharArray();
-        Arrays.sort(sChar);
+        if (s.length() != t.length()) {
+            return false;
+        }
 
-        char[] tChar = t.toCharArray();
-        Arrays.sort(tChar);
+        int[] alphabetArray = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            alphabetArray[s.charAt(i) - 'a']++;
+            alphabetArray[t.charAt(i) - 'a']--;
+        }
 
-        String sSorted = new String(sChar);
-        String tSorted = new String(tChar);
-        return sSorted.equals(tSorted);
+        for (int count : alphabetArray) {
+            if (count != 0) {
+                return false;
+            }
+        }
+        return true;
     }
+//    public boolean isAnagram(String s, String t) {
+//        char[] sChar = s.toCharArray();
+//        Arrays.sort(sChar);
+//
+//        char[] tChar = t.toCharArray();
+//        Arrays.sort(tChar);
+//
+//        String sSorted = new String(sChar);
+//        String tSorted = new String(tChar);
+//        return sSorted.equals(tSorted);
+//    }
 //    public boolean isAnagram(String s, String t) {
 //        if (s.length() != t.length()) {
 //            return false;
