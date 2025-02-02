@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class PermutationString_567 {
     public static void main(String[] args) {
-        String s1 = "abc", s2 = "cab";
+        String s1 = "ab", s2 = "eidoooba";
         PermutationString_567 obj = new PermutationString_567();
         boolean result = obj.checkInclusion(s1, s2);
         System.out.println(result);
@@ -21,17 +21,15 @@ public class PermutationString_567 {
             s2Array[s2.charAt(i)-'a']++;
         }
 
-        int left = 0, right = s1.length();
-        while (right <= s2.length()) {
+        for (int i = 0; i < (s2.length() - s1.length()); i++) {
             if (isSameFrequency(s1Array, s2Array)) {
                 return true;
             }
-            if (right < s2.length()) {
-                s2Array[s2.charAt(left++)-'a']--;
-                s2Array[s2.charAt(right++)-'a']++;
-            }
+            s2Array[s2.charAt(i+s1.length())-'a']++;
+            s2Array[s2.charAt(i)-'a']--;
         }
-        return false;
+
+        return isSameFrequency(s1Array, s2Array);
     }
 
     public boolean isSameFrequency(int[] array1, int[] array2) {
